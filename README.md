@@ -18,7 +18,7 @@ Think of it as a highly scalable, fault-tolerant message queue, but unlike tradi
 - **Scalable**: You can add more Kafka servers (Brokers) to a cluster seamlessly without downtime.
 - **Permanent Storage/Durability**: Messages are written to disk and replicated across multiple servers to prevent data loss.
 - **Fault Tolerant**: If a server crashes, Kafka automatically switches to another server that has a copy of the data.
-- **Decoupled Architecture**: The systems sending data (Producers) don't need to know anything about the systems receiving data (Consumers).
+- **Decoupled Architecture**: The systems sending data (Producers) don't need to know anything about the systems receiving data (Consumers). **In simple words (as seen in this project)**: The checkout system (`producer.py`) just drops the order into Kafka and immediately tells the user "Order Placed!", without waiting for the backend. The backend fulfillment system (`tracker.py`) picks it up independently. If the backend server is slow or crashes, the checkout system still works perfectly because they are "decoupled" (completely separated).
 
 ### 1.3 Real-World Use Cases
 - **Activity Tracking**: Tracking user clicks, page views, and searches on a website in real-time (e.g., LinkedIn tracking your feed interactions).
