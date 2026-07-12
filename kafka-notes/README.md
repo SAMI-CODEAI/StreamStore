@@ -7,7 +7,7 @@ If you want to get a deeper understanding of Kafka or how to use Kafka Stream fo
 ![](images/2020-09-20-13-00-07.png)
 <sup>image from https://www.cloudkarafka.com/blog/<sup>
 
-If you want a better reading exeperience, visit: https://anhthi.netlify.app/docs/architecture/message_queue/kafka
+
 
 Table of contents:
 - [Kafka notes](#kafka-notes)
