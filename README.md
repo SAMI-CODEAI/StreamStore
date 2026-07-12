@@ -385,5 +385,3 @@ As you grow with Kafka, you will encounter the broader ecosystem:
 3. **Schema Registry**: Enforces data structures. Instead of relying on Python's JSON module, you define strict contracts (like Avro or Protobuf). If a Producer sends a bad schema, Schema Registry blocks it to prevent downstream consumers from crashing.
 4. **Exactly-Once Semantics (EOS)**: Advanced configuration ensuring that even if there is a network glitch and a Producer accidentally sends a message twice, it is only recorded and processed exactly once.
 
----
-*Happy Streaming! You are now equipped with the deepest understanding of Kafka mechanics!* 🚀
