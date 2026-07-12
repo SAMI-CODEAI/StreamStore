@@ -1,0 +1,151 @@
+PS D:\SAMI\APACHE KAFKA\StreamStore> .venv\Scripts\activate
+(.venv) PS D:\SAMI\APACHE KAFKA\StreamStore> docker exec -it kafka kafka-topics --list --bootstrap-server localhost:9092
+orders
+
+What's next:
+    Try Docker Debug for seamless, persistent debugging tools in any container or image → docker debug kafka
+    Learn more at https://docs.docker.com/go/debug-cli/
+(.venv) PS D:\SAMI\APACHE KAFKA\StreamStore> docker exec -it kafka kafka-topics --list --bootstrap-server localhost:9092 --describe --topic orders
+Command must include exactly one action: --list, --describe, --create, --alter or --delete
+Option                                   Description
+------                                   -----------
+--alter                                  Alter the number of partitions and
+                                           replica assignment. (To alter topic
+                                           configurations, the kafka-configs
+                                           tool can be used.)
+--at-min-isr-partitions                  If set when describing topics, only
+                                           show partitions whose isr count is
+                                           equal to the configured minimum.
+--bootstrap-server <String: server to    REQUIRED: The Kafka server to connect
+  connect to>                              to.
+--command-config <String: command        Property file containing configs to be
+  config property file>                    passed to Admin Client.
+--config <String: name=value>            A topic configuration override for the
+                                           topic being created. The following
+                                           is a list of valid configurations:
+                                                cleanup.policy
+                                                compression.gzip.level
+                                                compression.lz4.level
+                                                compression.type
+                                                compression.zstd.level
+                                                delete.retention.ms
+                                                file.delete.delay.ms
+                                                flush.messages
+                                                flush.ms
+                                                follower.replication.throttled.
+                                           replicas
+                                                index.interval.bytes
+                                                leader.replication.throttled.replicas
+                                                local.retention.bytes
+                                                local.retention.ms
+                                                max.compaction.lag.ms
+                                                max.message.bytes
+                                                message.timestamp.after.max.ms
+                                                message.timestamp.before.max.ms
+                                                message.timestamp.type
+                                                min.cleanable.dirty.ratio
+                                                min.compaction.lag.ms
+                                                min.insync.replicas
+                                                preallocate
+                                                remote.log.copy.disable
+                                                remote.log.delete.on.disable
+                                                remote.storage.enable
+                                                retention.bytes
+                                                retention.ms
+                                                segment.bytes
+                                                segment.index.bytes
+                                                segment.jitter.ms
+                                                segment.ms
+                                                unclean.leader.election.enable
+                                         See the Kafka documentation for full
+                                           details on the topic configs. It is
+                                           supported only in combination with --
+                                           create. (To alter topic
+                                           configurations, the kafka-configs
+                                           tool can be used.)
+--create                                 Create a new topic.
+--delete                                 Delete a topic.
+--delete-config <String: name>           This option is no longer supported and
+                                           has been deprecated since 4.0
+--describe                               List details for the given topics.
+--exclude-internal                       Exclude internal topics when listing
+                                           or describing topics. By default,
+                                           the internal topics are included.
+--help                                   Print usage information.
+--if-exists                              If set when altering or deleting or
+                                           describing topics, the action will
+                                           only execute if the topic exists.
+--if-not-exists                          If set when creating topics, the
+                                           create request will not fail if the
+                                           topic already exists, but the
+                                           request will still be sent.
+--list                                   List all available topics.
+--partition-size-limit-per-response      The maximum partition size to be
+  <Integer: maximum number of              included in one
+  partitions per response>                 DescribeTopicPartitions response.
+--partitions <Integer: # of partitions>  The number of partitions for the topic
+                                           being created or altered. If not
+                                           supplied with --create, the topic
+                                           uses the cluster default. (WARNING:
+                                           If partitions are increased for a
+                                           topic that has a key, the partition
+                                           logic or ordering of the messages
+                                           will be affected).
+--replica-assignment <String:            A list of manual partition-to-broker
+  broker_id_for_part1_replica1 :           assignments for the topic being
+  broker_id_for_part1_replica2 ,           created or altered.
+  broker_id_for_part2_replica1 :
+  broker_id_for_part2_replica2 , ...>
+--replication-factor <Integer:           The replication factor for each
+  replication factor>                      partition in the topic being
+                                           created. If not supplied, the topic
+                                           uses the cluster default.
+--topic <String: topic>                  The topic to create, alter, describe
+                                           or delete. It also accepts a regular
+                                           expression, except for --create
+                                           option.
+--topic-id <String: topic-id>            The topic-id to describe.
+--topics-with-overrides                  If set when describing topics, only
+                                           show topics that have overridden
+                                           configs.
+--unavailable-partitions                 If set when describing topics, only
+                                           show partitions whose leader is not
+                                           available.
+--under-min-isr-partitions               If set when describing topics, only
+                                           show partitions whose isr count is
+                                           less than the configured minimum.
+--under-replicated-partitions            If set when describing topics, only
+                                           show under-replicated partitions.
+--version                                Display Kafka version.
+
+What's next:
+    Try Docker Debug for seamless, persistent debugging tools in any container or image → docker debug kafka
+    Learn more at https://docs.docker.com/go/debug-cli/
+(.venv) PS D:\SAMI\APACHE KAFKA\StreamStore> docker exec -it kafka kafka-topics --bootstrap-server localhost:9092 --describe --topic orders
+Topic: orders   TopicId: n5KGh5ohQwCOOyLYXlTQkw PartitionCount: 1       ReplicationFactor: 1    Configs: min.insync.replicas=1
+        Topic: orders   Partition: 0    Leader: 1       Replicas: 1     Isr: 1  Elr:    LastKnownElr:
+
+What's next:
+    Try Docker Debug for seamless, persistent debugging tools in any container or image → docker debug kafka
+    Learn more at https://docs.docker.com/go/debug-cli/
+(.venv) PS D:\SAMI\APACHE KAFKA\StreamStore>
+(.venv) PS D:\SAMI\APACHE KAFKA\StreamStore> docker exec -it kafka kafka-console-consumer -bootstrap-server localhost:9092 --topic orders --from-beginning
+The consumer rebalance protocol (KIP-848) is production-ready! Set group.protocol=consumer to try it out. See https://kafka.apache.org/documentation/#consumer_rebalance_protocol
+{"order_id": "d1f3f7bf-cf90-456b-8a33-08704b4b5cac", "user": "lara", "item": "frozen yogurt", "quantity": 10}
+{"order_id": "992901b5-ebf6-41f9-8ed5-23827b5fa7d3", "user": "lara", "item": "frozen yogurt", "quantity": 10}
+
+
+
+kafka-crash-course
+Install confluent-kafka dependency
+pip3 install confluent-kafka
+Validate that the topic was created in kafka container
+docker exec -it kafka kafka-topics --list --bootstrap-server localhost:9092
+Describe that topic and see its partitions
+docker exec -it kafka kafka-topics --bootstrap-server localhost:9092 --describe --topic new_orders
+View all events in a topic
+docker exec -it kafka kafka-console-consumer --bootstrap-server localhost:9092 --topic orders --from-beginning
+
+
+
+https://www.youtube.com/watch?v=B7CwU_tNYIE
